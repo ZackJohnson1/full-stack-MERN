@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 export const CreatePage = () => {
 
-    const [title, setTitle]       = useState('');
-    const [year, setYear]         = useState('');
-    const [language, setLanguage] = useState('');
+    const [opponent, setOpponent]       = useState('');
+    const [score, setScore]         = useState('');
+    const [location, setLocation] = useState('');
     
     const redirect = useNavigate();
 
     const addMovie = async () => {
-        const newMovie = { title, year, language };
+        const newMovie = { opponent, score, location };
         const response = await fetch('/matches', {
             method: 'post',
             body: JSON.stringify(newMovie),
@@ -36,29 +36,29 @@ export const CreatePage = () => {
             <form onSubmit={(e) => { e.preventDefault();}}>
                 <fieldset>
                     <legend>Which movie are you adding?</legend>
-                    <label for="title">Title</label>
+                    <label for="opponent">Opponent</label>
                     <input
                         type="text"
-                        placeholder="Title of the movie"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)} 
-                        id="title" />
+                        placeholder="Opponent's name"
+                        value={opponent}
+                        onChange={e => setOpponent(e.target.value)} 
+                        id="opponent" />
                     
-                    <label for="year">Year released</label>
+                    <label for="score">Score</label>
                     <input
                         type="number"
-                        value={year}
-                        placeholder="Year of the movie"
-                        onChange={e => setYear(e.target.value)} 
-                        id="year" />
+                        value={score}
+                        placeholder="Score of the Match"
+                        onChange={e => setScore(e.target.value)} 
+                        id="score" />
 
-                    <label for="language">Language</label>
+                    <label for="location">location</label>
                     <input
                         type="text"
-                        placeholder="Primary language of the movie"
-                        value={language}
-                        onChange={e => setLanguage(e.target.value)} 
-                        id="language" />
+                        placeholder="where did the match take place"
+                        value={location}
+                        onChange={e => setLocation(e.target.value)} 
+                        id="location" />
 
                     <label for="submit">
                     <button

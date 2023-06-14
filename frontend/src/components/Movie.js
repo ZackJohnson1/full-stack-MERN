@@ -4,9 +4,9 @@ import { MdDeleteForever, MdEdit } from 'react-icons/md';
 function Movie({ movie, onEdit, onDelete }) {
     return (
         <tr>
-            <td>{movie.title}</td>
-            <td>{movie.year}</td>
-            <td>{movie.language}</td>
+            <td>{movie.opponent}</td>
+            <td>{movie.score}</td>
+            <td>{movie.location}</td>
             <td><MdDeleteForever onClick={() => onDelete(movie._id)} /></td>
             <td><MdEdit onClick={() => onEdit(movie)} /></td>
         </tr>

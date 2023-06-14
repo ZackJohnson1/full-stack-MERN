@@ -7,9 +7,9 @@ function MovieList({ movies, onDelete, onEdit }) {
             <caption>Add and Edit Movies</caption>
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Year</th>
-                    <th>Language</th>
+                    <th>Opponent</th>
+                    <th>Score</th>
+                    <th>Location</th>
                     <th>Delete</th>
                     <th>Edit</th>
                 </tr>

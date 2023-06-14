@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 export const EditMoviePage = ({ movieToEdit }) => {
  
-    const [title, setTitle]       = useState(movieToEdit.title);
-    const [year, setYear]         = useState(movieToEdit.year);
-    const [language, setLanguage] = useState(movieToEdit.language);
+    const [opponent, setOpponent]       = useState(movieToEdit.opponent);
+    const [score, setScore]         = useState(movieToEdit.score);
+    const [location, setLocation] = useState(movieToEdit.location);
     
     const redirect = useNavigate();
 
@@ -13,9 +13,9 @@ export const EditMoviePage = ({ movieToEdit }) => {
         const response = await fetch(`/matches/${movieToEdit._id}`, {
             method: 'PUT',
             body: JSON.stringify({ 
-                title: title, 
-                year: year, 
-                language: language
+                opponent: opponent, 
+                score: score, 
+                location: location
             }),
             headers: {'Content-Type': 'application/json',},
         });
@@ -37,26 +37,26 @@ export const EditMoviePage = ({ movieToEdit }) => {
             <form onSubmit={(e) => { e.preventDefault();}}>
                 <fieldset>
                     <legend>Which movie are you adding?</legend>
-                    <label for="title">Movie title</label>
+                    <label for="opponent">Opponent Name</label>
                     <input
                         type="text"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)} 
-                        id="title" />
+                        value={opponent}
+                        onChange={e => setOpponent(e.target.value)} 
+                        id="opponent" />
                     
-                    <label for="year">Year released</label>
+                    <label for="score">Score</label>
                     <input
                         type="number"
-                        value={year}
-                        onChange={e => setYear(e.target.value)} 
-                        id="year" />
+                        value={score}
+                        onChange={e => setScore(e.target.value)} 
+                        id="score" />
 
-                    <label for="language">Language</label>
+                    <label for="location">Location</label>
                     <input
                         type="text"
-                        value={language}
-                        onChange={e => setLanguage(e.target.value)} 
-                        id="language" />
+                        value={location}
+                        onChange={e => setLocation(e.target.value)} 
+                        id="location" />
 
                     <label for="submit">
                     <button

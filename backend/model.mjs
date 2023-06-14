@@ -20,9 +20,9 @@ db.once("open", (err) => {
 
 // SCHEMA: Define the collection's schema.
 const movieSchema = mongoose.Schema({
-	title:    { type: String, required: true },
-	year:     { type: Number, required: true },
-	language: { type: String, required: true }
+	opponent:    { type: String, required: true },
+	score:     { type: Number, required: true },
+	location: { type: String, required: true }
 });
 
 // Compile the model from the schema.
@@ -30,11 +30,11 @@ const Movie = mongoose.model('Movie', movieSchema);
 
 
 // CREATE model *****************************************
-const createMatch = async (title, year, language) => {
+const createMatch = async (opponent, score, location) => {
     const movie = new Movie({ 
-        title: title, 
-        year: year, 
-        language: language 
+        opponent: opponent, 
+        score: score, 
+        location: location 
     });
     return movie.save();
 }
@@ -61,17 +61,17 @@ const deleteMatchById = async (_id) => {
 
 
 // UPDATE model *****************************************************
-const updateMatch = async (_id, title, year, language) => {
+const updateMatch = async (_id, opponent, score, location) => {
     const result = await Movie.replaceOne({_id: _id }, {
-        title: title,
-        year: year,
-        language: language
+        opponent: opponent,
+        score: score,
+        location: location
     });
     return { 
         _id: _id, 
-        title: title,
-        year: year,
-        language: language 
+        opponent: opponent,
+        score: score,
+        location: location 
     }
 }
 

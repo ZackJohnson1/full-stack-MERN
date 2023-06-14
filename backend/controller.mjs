@@ -10,9 +10,9 @@ app.use(express.json());  // REST needs JSON MIME type.
 // CREATE controller ******************************************
 app.post ('/matches', (req,res) => { 
     matches.createMatch(
-        req.body.title, 
-        req.body.year, 
-        req.body.language
+        req.body.opponent, 
+        req.body.score, 
+        req.body.location
         )
         .then(movie => {
             res.status(201).json(movie);
@@ -63,9 +63,9 @@ app.get('/matches/:_id', (req, res) => {
 app.put('/matches/:_id', (req, res) => {
     matches.updateMatch(
         req.params._id, 
-        req.body.title, 
-        req.body.year, 
-        req.body.language
+        req.body.opponent, 
+        req.body.score, 
+        req.body.location
     )
     .then(movie => {
         res.json(movie);
