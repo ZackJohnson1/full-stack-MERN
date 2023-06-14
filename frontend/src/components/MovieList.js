@@ -10,6 +10,7 @@ function MovieList({ movies, onDelete, onEdit }) {
                     <th>Opponent</th>
                     <th>Score</th>
                     <th>Location</th>
+                    <th>Surface</th>
                     <th>Delete</th>
                     <th>Edit</th>
                 </tr>

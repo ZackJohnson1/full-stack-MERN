@@ -6,6 +6,7 @@ export const EditMoviePage = ({ movieToEdit }) => {
     const [opponent, setOpponent]       = useState(movieToEdit.opponent);
     const [score, setScore]         = useState(movieToEdit.score);
     const [location, setLocation] = useState(movieToEdit.location);
+    const [surface, setSurface] = useState(movieToEdit.surface);
     
     const redirect = useNavigate();
 
@@ -15,7 +16,8 @@ export const EditMoviePage = ({ movieToEdit }) => {
             body: JSON.stringify({ 
                 opponent: opponent, 
                 score: score, 
-                location: location
+                location: location,
+                surface: surface
             }),
             headers: {'Content-Type': 'application/json',},
         });
@@ -57,6 +59,13 @@ export const EditMoviePage = ({ movieToEdit }) => {
                         value={location}
                         onChange={e => setLocation(e.target.value)} 
                         id="location" />
+
+                    <label for="surface">Surface</label>
+                    <input
+                        type="text"
+                        value={surface}
+                        onChange={e => setSurface(e.target.value)} 
+                        id="surface" />    
 
                     <label for="submit">
                     <button

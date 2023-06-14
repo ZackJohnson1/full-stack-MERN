@@ -12,7 +12,8 @@ app.post ('/matches', (req,res) => {
     matches.createMatch(
         req.body.opponent, 
         req.body.score, 
-        req.body.location
+        req.body.location,
+        req.body.surface
         )
         .then(tennisMatch => {
             res.status(201).json(tennisMatch);
@@ -65,7 +66,8 @@ app.put('/matches/:_id', (req, res) => {
         req.params._id, 
         req.body.opponent, 
         req.body.score, 
-        req.body.location
+        req.body.location,
+        req.body.surface
     )
     .then(tennisMatch => {
         res.json(tennisMatch);

@@ -7,6 +7,7 @@ function Movie({ movie, onEdit, onDelete }) {
             <td>{movie.opponent}</td>
             <td>{movie.score}</td>
             <td>{movie.location}</td>
+            <td>{movie.surface}</td>
             <td><MdDeleteForever onClick={() => onDelete(movie._id)} /></td>
             <td><MdEdit onClick={() => onEdit(movie)} /></td>
         </tr>

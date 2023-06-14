@@ -22,7 +22,8 @@ db.once("open", (err) => {
 const tennisMatchSchema = mongoose.Schema({
 	opponent:    { type: String, required: true },
 	score:     { type: Number, required: true },
-	location: { type: String, required: true }
+	location: { type: String, required: true },
+    surface: { type: String, required: true }
 });
 
 // Compile the model from the schema.
@@ -30,11 +31,12 @@ const TennisMatch = mongoose.model('Tennis Match', tennisMatchSchema);
 
 
 // CREATE model *****************************************
-const createMatch = async (opponent, score, location) => {
+const createMatch = async (opponent, score, location, surface) => {
     const tennisMatch = new TennisMatch({ 
         opponent: opponent, 
         score: score, 
-        location: location 
+        location: location,
+        surface: surface
     });
     return tennisMatch.save();
 }
@@ -61,17 +63,19 @@ const deleteMatchById = async (_id) => {
 
 
 // UPDATE model *****************************************************
-const updateMatch = async (_id, opponent, score, location) => {
+const updateMatch = async (_id, opponent, score, location, surface) => {
     const result = await TennisMatch.replaceOne({_id: _id }, {
         opponent: opponent,
         score: score,
-        location: location
+        location: location,
+        surface: surface
     });
     return { 
         _id: _id, 
         opponent: opponent,
         score: score,
-        location: location 
+        location: location,
+        surface: surface 
     }
 }
 

@@ -6,11 +6,12 @@ export const CreatePage = () => {
     const [opponent, setOpponent]       = useState('');
     const [score, setScore]         = useState('');
     const [location, setLocation] = useState('');
+    const [surface, setSurface] = useState('');
     
     const redirect = useNavigate();
 
     const addMovie = async () => {
-        const newMovie = { opponent, score, location };
+        const newMovie = { opponent, score, location, surface };
         const response = await fetch('/matches', {
             method: 'post',
             body: JSON.stringify(newMovie),
@@ -59,6 +60,14 @@ export const CreatePage = () => {
                         value={location}
                         onChange={e => setLocation(e.target.value)} 
                         id="location" />
+
+                    <label for="surface">surface</label>
+                    <input
+                        type="text"
+                        placeholder="What surface was the match played on?"
+                        value={surface}
+                        onChange={e => setSurface(e.target.value)} 
+                        id="surface" />
 
                     <label for="submit">
                     <button
