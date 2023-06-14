@@ -14,8 +14,8 @@ app.post ('/matches', (req,res) => {
         req.body.score, 
         req.body.location
         )
-        .then(movie => {
-            res.status(201).json(movie);
+        .then(tennisMatch => {
+            res.status(201).json(tennisMatch);
         })
         .catch(error => {
             console.log(error);
@@ -27,9 +27,9 @@ app.post ('/matches', (req,res) => {
 // RETRIEVE controller ****************************************************
 app.get('/matches', (req, res) => {
     matches.retrieveMatches()
-        .then(movie => { 
-            if (movie !== null) {
-                res.json(movie);
+        .then(tennisMatch => { 
+            if (tennisMatch !== null) {
+                res.json(tennisMatch);
             } else {
                 res.status(404).json({ Error: 'document not found.' });
             }         
@@ -44,9 +44,9 @@ app.get('/matches', (req, res) => {
 // RETRIEVE by ID controller
 app.get('/matches/:_id', (req, res) => {
     matches.retrieveMatchByID(req.params._id)
-    .then(movie => { 
-        if (movie !== null) {
-            res.json(movie);
+    .then(tennisMatch => { 
+        if (tennisMatch !== null) {
+            res.json(tennisMatch);
         } else {
             res.status(404).json({ Error: 'document not found' });
         }         
@@ -67,8 +67,8 @@ app.put('/matches/:_id', (req, res) => {
         req.body.score, 
         req.body.location
     )
-    .then(movie => {
-        res.json(movie);
+    .then(tennisMatch => {
+        res.json(tennisMatch);
     })
     .catch(error => {
         console.log(error);

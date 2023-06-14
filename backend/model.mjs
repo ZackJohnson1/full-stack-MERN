@@ -19,50 +19,50 @@ db.once("open", (err) => {
 });
 
 // SCHEMA: Define the collection's schema.
-const movieSchema = mongoose.Schema({
+const tennisMatchSchema = mongoose.Schema({
 	opponent:    { type: String, required: true },
 	score:     { type: Number, required: true },
 	location: { type: String, required: true }
 });
 
 // Compile the model from the schema.
-const Movie = mongoose.model('Movie', movieSchema);
+const TennisMatch = mongoose.model('Tennis Match', tennisMatchSchema);
 
 
 // CREATE model *****************************************
 const createMatch = async (opponent, score, location) => {
-    const movie = new Movie({ 
+    const tennisMatch = new TennisMatch({ 
         opponent: opponent, 
         score: score, 
         location: location 
     });
-    return movie.save();
+    return tennisMatch.save();
 }
 
 
 // RETRIEVE models *****************************************
 // Retrieve based on a filter and return a promise.
 const retrieveMatches = async () => {
-    const query = Movie.find();
+    const query = TennisMatch.find();
     return query.exec();
 }
 
 // RETRIEVE by ID
 const retrieveMatchByID = async (_id) => {
-    const query = Movie.findById({_id: _id});
+    const query = TennisMatch.findById({_id: _id});
     return query.exec();
 }
 
 // DELETE model based on _id  *****************************************
 const deleteMatchById = async (_id) => {
-    const result = await Movie.deleteOne({_id: _id});
+    const result = await TennisMatch.deleteOne({_id: _id});
     return result.deletedCount;
 };
 
 
 // UPDATE model *****************************************************
 const updateMatch = async (_id, opponent, score, location) => {
-    const result = await Movie.replaceOne({_id: _id }, {
+    const result = await TennisMatch.replaceOne({_id: _id }, {
         opponent: opponent,
         score: score,
         location: location
