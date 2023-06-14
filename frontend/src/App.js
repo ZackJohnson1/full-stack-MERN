@@ -21,7 +21,7 @@ import TopicsPage from './pages/TopicsPage';
 // Define the function that renders the content in routes using State.
 function App() {
 
-  const [movie, setMovieToEdit] = useState([])
+  const [match, setMatchToEdit] = useState([])
 
   return (
     <>
@@ -38,9 +38,9 @@ function App() {
             <section>
                 <Routes> 
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/log" element={<LogPage setMovie={setMovieToEdit}/>} />
+                    <Route path="/log" element={<LogPage setMatch={setMatchToEdit}/>} />
                     <Route path="/create" element={<CreatePage />} /> 
-                    <Route path="/update" element={<EditMoviePage movieToEdit={movie} />} />
+                    <Route path="/update" element={<EditMoviePage matchToEdit={match} />} />
                     <Route path="/contact" element={<ContactPage />} /> 
                     <Route path="/order" element={<OrderPage />} /> 
                     <Route path="/gallery" element={<GalleryPage />} /> 
