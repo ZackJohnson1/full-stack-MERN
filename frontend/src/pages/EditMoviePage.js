@@ -7,6 +7,8 @@ export const EditMatchPage = ({ matchToEdit }) => {
     const [score, setScore]         = useState(matchToEdit.score);
     const [location, setLocation] = useState(matchToEdit.location);
     const [surface, setSurface] = useState(matchToEdit.surface);
+    const [winners, setWinners] = useState(matchToEdit.winners);
+    const [unforcedErrors, setUnforcedErrors] = useState(matchToEdit.unforcedErrors);
     
     const redirect = useNavigate();
 
@@ -17,7 +19,9 @@ export const EditMatchPage = ({ matchToEdit }) => {
                 opponent: opponent, 
                 score: score, 
                 location: location,
-                surface: surface
+                surface: surface,
+                winners: winners,
+                unforcedErrors: unforcedErrors
             }),
             headers: {'Content-Type': 'application/json',},
         });
@@ -66,6 +70,20 @@ export const EditMatchPage = ({ matchToEdit }) => {
                         value={surface}
                         onChange={e => setSurface(e.target.value)} 
                         id="surface" />    
+
+                    <label for="winners">Winners</label>
+                    <input
+                        type="number"
+                        value={winners}
+                        onChange={e => setWinners(e.target.value)} 
+                        id="winners" />
+
+                    <label for="unforcedErrors">Unforced Errors</label>
+                    <input
+                        type="number"
+                        value={unforcedErrors}
+                        onChange={e => setUnforcedErrors(e.target.value)} 
+                        id="unforcedErrors" />   
 
                     <label for="submit">
                     <button

@@ -13,14 +13,16 @@ app.post ('/matches', (req,res) => {
         req.body.opponent, 
         req.body.score, 
         req.body.location,
-        req.body.surface
+        req.body.surface,
+        req.body.winners,
+        req.body.unforcedErrors
         )
         .then(tennisMatch => {
             res.status(201).json(tennisMatch);
         })
         .catch(error => {
             console.log(error);
-            res.status(400).json({ error: 'create a tennis match has failed' });
+            res.status(400).json({ error: 'Creating the match has failed' });
         });
 });
 
@@ -67,7 +69,9 @@ app.put('/matches/:_id', (req, res) => {
         req.body.opponent, 
         req.body.score, 
         req.body.location,
-        req.body.surface
+        req.body.surface,
+        req.body.winners,
+        req.body.unforcedErrors
     )
     .then(tennisMatch => {
         res.json(tennisMatch);

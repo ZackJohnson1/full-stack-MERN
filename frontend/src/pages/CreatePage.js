@@ -7,11 +7,13 @@ export const CreatePage = () => {
     const [score, setScore]         = useState('');
     const [location, setLocation] = useState('');
     const [surface, setSurface] = useState('');
+    const [winners, setWinners] = useState('');
+    const [unforcedErrors, setUnforcedErrors] = useState('');
     
     const redirect = useNavigate();
 
     const addMatch = async () => {
-        const newMatch = { opponent, score, location, surface };
+        const newMatch = { opponent, score, location, surface, winners, unforcedErrors };
         const response = await fetch('/matches', {
             method: 'post',
             body: JSON.stringify(newMatch),
@@ -48,7 +50,7 @@ export const CreatePage = () => {
                     
                     <label for="score">Score</label>
                     <input
-                        type="number"
+                        type="text"
                         value={score}
                         placeholder="Score of the Match"
                         onChange={e => setScore(e.target.value)} 
@@ -69,6 +71,22 @@ export const CreatePage = () => {
                         value={surface}
                         onChange={e => setSurface(e.target.value)} 
                         id="surface" />
+
+                    <label for="winners">winners</label>
+                    <input
+                        type="number"
+                        placeholder="How many winners did you hit?"
+                        value={winners}
+                        onChange={e => setWinners(e.target.value)} 
+                        id="winners" />
+
+                    <label for="unforcedErrors">unforced errors</label>
+                    <input
+                        type="number"
+                        placeholder="How many unforced errors did you have?"
+                        value={unforcedErrors}
+                        onChange={e => setUnforcedErrors(e.target.value)} 
+                        id="unforcedErrors" />
 
                     <label for="submit">
                     <button

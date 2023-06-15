@@ -11,6 +11,8 @@ function MatchList({ matches, onDelete, onEdit }) {
                     <th>Score</th>
                     <th>Location</th>
                     <th>Surface</th>
+                    <th>Winners</th>
+                    <th>Unforced Errors</th>
                     <th>Delete</th>
                     <th>Edit</th>
                 </tr>

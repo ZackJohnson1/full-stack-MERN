@@ -8,6 +8,8 @@ function Match({ match, onEdit, onDelete }) {
             <td>{match.score}</td>
             <td>{match.location}</td>
             <td>{match.surface}</td>
+            <td>{match.winners}</td>
+            <td>{match.unforcedErrors}</td>
             <td><MdDeleteForever onClick={() => onDelete(match._id)} /></td>
             <td><MdEdit onClick={() => onEdit(match)} /></td>
         </tr>

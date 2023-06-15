@@ -19,10 +19,12 @@ db.once("open", (err) => {
 
 // SCHEMA: Define the collection's schema.
 const tennisMatchSchema = mongoose.Schema({
-	opponent:    { type: String, required: true },
-	score:     { type: Number, required: true },
-	location: { type: String, required: true },
-    surface: { type: String, required: true }
+	opponent:   { type: String, required: true },
+	score:      { type: String, required: true },
+	location:   { type: String, required: true },
+    surface:    { type: String, required: true },
+    winners:    { type: Number, required: true },
+    unforcedErrors: { type: Number, required: true },
 });
 
 // Compile the model from the schema.
@@ -30,12 +32,14 @@ const TennisMatch = mongoose.model('Tennis Match', tennisMatchSchema);
 
 
 // CREATE model *****************************************
-const createMatch = async (opponent, score, location, surface) => {
+const createMatch = async (opponent, score, location, surface, winners, unforcedErrors) => {
     const tennisMatch = new TennisMatch({ 
         opponent: opponent, 
         score: score, 
         location: location,
-        surface: surface
+        surface: surface,
+        winners: winners,
+        unforcedErrors: unforcedErrors
     });
     return tennisMatch.save();
 }
@@ -61,19 +65,23 @@ const deleteMatchById = async (_id) => {
 
 
 // UPDATE model 
-const updateMatch = async (_id, opponent, score, location, surface) => {
+const updateMatch = async (_id, opponent, score, location, surface, winners, unforcedErrors) => {
     const result = await TennisMatch.replaceOne({_id: _id }, {
         opponent: opponent,
         score: score,
         location: location,
-        surface: surface
+        surface: surface,
+        winners: winners,
+        unforcedErrors: unforcedErrors
     });
     return { 
         _id: _id, 
         opponent: opponent,
         score: score,
         location: location,
-        surface: surface 
+        surface: surface,
+        winners: winners,
+        unforcedErrors: unforcedErrors
     }
 }
 
