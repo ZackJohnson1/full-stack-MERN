@@ -1,17 +1,17 @@
 import React, { useState }  from 'react';
 import { useNavigate } from "react-router-dom";
 
-export const EditMoviePage = ({ movieToEdit }) => {
+export const EditMatchPage = ({ matchToEdit }) => {
  
-    const [opponent, setOpponent]       = useState(movieToEdit.opponent);
-    const [score, setScore]         = useState(movieToEdit.score);
-    const [location, setLocation] = useState(movieToEdit.location);
-    const [surface, setSurface] = useState(movieToEdit.surface);
+    const [opponent, setOpponent]       = useState(matchToEdit.opponent);
+    const [score, setScore]         = useState(matchToEdit.score);
+    const [location, setLocation] = useState(matchToEdit.location);
+    const [surface, setSurface] = useState(matchToEdit.surface);
     
     const redirect = useNavigate();
 
-    const editMovie = async () => {
-        const response = await fetch(`/matches/${movieToEdit._id}`, {
+    const editMatch = async () => {
+        const response = await fetch(`/matches/${matchToEdit._id}`, {
             method: 'PUT',
             body: JSON.stringify({ 
                 opponent: opponent, 
@@ -34,11 +34,11 @@ export const EditMoviePage = ({ movieToEdit }) => {
     return (
         <>
         <article>
-            <h2>Edit a movie in the collection</h2>
+            <h2>Edit a match in the collection</h2>
             <p>Paragraph about this page.</p>
             <form onSubmit={(e) => { e.preventDefault();}}>
                 <fieldset>
-                    <legend>Which movie are you adding?</legend>
+                    <legend>Which match are you adding?</legend>
                     <label for="opponent">Opponent Name</label>
                     <input
                         type="text"
@@ -69,7 +69,7 @@ export const EditMoviePage = ({ movieToEdit }) => {
 
                     <label for="submit">
                     <button
-                        onClick={editMovie}
+                        onClick={editMatch}
                         id="submit"
                     >Save</button> updates to the collection</label>
                 </fieldset>
@@ -78,4 +78,4 @@ export const EditMoviePage = ({ movieToEdit }) => {
         </>
     );
 }
-export default EditMoviePage;
+export default EditMatchPage;

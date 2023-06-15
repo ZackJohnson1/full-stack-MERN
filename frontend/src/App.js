@@ -28,12 +28,11 @@ function App() {
       <BrowserRouter>
 
           <header>
-            <h1>Zachary J Johnson</h1>
+            <h1>Zachary J. Johnson</h1>
             <p>This app uses MERN.</p>
           </header>
 
           <Navigation />
-
           <main>
             <section>
                 <Routes> 

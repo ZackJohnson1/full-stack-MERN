@@ -4,10 +4,10 @@ import * as matches from './model.mjs';
 
 const PORT = process.env.PORT;
 const app = express();
-app.use(express.json());  // REST needs JSON MIME type.
+app.use(express.json());  
 
 
-// CREATE controller ******************************************
+// CREATE controller 
 app.post ('/matches', (req,res) => { 
     matches.createMatch(
         req.body.opponent, 
@@ -20,24 +20,24 @@ app.post ('/matches', (req,res) => {
         })
         .catch(error => {
             console.log(error);
-            res.status(400).json({ error: 'create a document failed' });
+            res.status(400).json({ error: 'create a tennis match has failed' });
         });
 });
 
 
-// RETRIEVE controller ****************************************************
+// RETRIEVE controller 
 app.get('/matches', (req, res) => {
     matches.retrieveMatches()
         .then(tennisMatch => { 
             if (tennisMatch !== null) {
                 res.json(tennisMatch);
             } else {
-                res.status(404).json({ Error: 'document not found.' });
+                res.status(404).json({ Error: 'The item you are searching for was not found.' });
             }         
          })
         .catch(error => {
             console.log(error);
-            res.status(400).json({ Error: 'retrieve document failed.' });
+            res.status(400).json({ Error: 'Item retrieval failed.' });
         });
 });
 
@@ -49,18 +49,18 @@ app.get('/matches/:_id', (req, res) => {
         if (tennisMatch !== null) {
             res.json(tennisMatch);
         } else {
-            res.status(404).json({ Error: 'document not found' });
+            res.status(404).json({ Error: 'The item you are searching for was not found.' });
         }         
      })
     .catch(error => {
         console.log(error);
-        res.status(400).json({ Error: 'retrieve document failed' });
+        res.status(400).json({ Error: 'Item retrieval failed' });
     });
 
 });
 
 
-// UPDATE controller ************************************
+// UPDATE controller 
 app.put('/matches/:_id', (req, res) => {
     matches.updateMatch(
         req.params._id, 
@@ -74,28 +74,28 @@ app.put('/matches/:_id', (req, res) => {
     })
     .catch(error => {
         console.log(error);
-        res.status(400).json({ error: 'document update failed' });
+        res.status(400).json({ error: 'Tennis match updated has failed' });
     });
 });
 
 
-// DELETE Controller ******************************
+// DELETE Controller 
 app.delete('/matches/:_id', (req, res) => {
     matches.deleteMatchById(req.params._id)
         .then(deletedCount => {
             if (deletedCount === 1) {
                 res.status(204).send();
             } else {
-                res.status(404).json({ Error: 'document no longer exists' });
+                res.status(404).json({ Error: 'The Tennis Match you are searching for does not exist' });
             }
         })
         .catch(error => {
             console.error(error);
-            res.send({ error: 'delete a document failed' });
+            res.send({ error: 'Deletion failed.' });
         });
 });
 
 
 app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}...`);
+    console.log(`The Server is listening on port ${PORT}...`);
 });

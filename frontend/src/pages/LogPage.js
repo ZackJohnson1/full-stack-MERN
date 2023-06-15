@@ -1,37 +1,37 @@
 import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import MovieList from '../components/MovieList';
+import MatchList from '../components/MatchList';
 
-function LogPage({ setMovie }) {
+function LogPage({ setMatch }) {
     // Use the Navigate for redirection
     const redirect = useNavigate();
 
     // Use state to bring in the data
-    const [movies, setMovies] = useState([]);
+    const [matches, setMatches] = useState([]);
 
     // RETRIEVE the entire list of movies
-    const loadMovies = async () => {
+    const loadMatches = async () => {
         const response = await fetch('/matches');
-        const movies = await response.json();
-        setMovies(movies);
+        const matches = await response.json();
+        setMatches(matches);
     } 
     
 
     // UPDATE a single movie
-    const onEditMovie = async movie => {
-        setMovie(movie);
+    const onEditMatch = async match => {
+        setMatch(match);
         redirect("/update");
     }
 
 
     // DELETE a single movie  
-    const onDeleteMovie = async _id => {
+    const onDeleteMatch = async _id => {
         const response = await fetch(`/matches/${_id}`, { method: 'DELETE' });
         if (response.status === 204) {
             const getResponse = await fetch('/matches');
-            const movies = await getResponse.json();
-            setMovies(movies);
+            const matches = await getResponse.json();
+            setMatches(matches);
         } else {
             console.error(`Failed to delete movie with _id = ${_id}, status code = ${response.status}`)
         }
@@ -39,7 +39,7 @@ function LogPage({ setMovie }) {
 
     // LOAD all the movies
     useEffect(() => {
-        loadMovies();
+        loadMatches();
     }, []);
 
     // DISPLAY the movies
@@ -47,10 +47,10 @@ function LogPage({ setMovie }) {
         <>
             <h2>Completed Matches</h2>
             <p>Paragraph about this page.</p>
-            <MovieList 
-                movies={movies} 
-                onEdit={onEditMovie} 
-                onDelete={onDeleteMovie} 
+            <MatchList 
+                matches={matches} 
+                onEdit={onEditMatch} 
+                onDelete={onDeleteMatch} 
             />
         </>
     );

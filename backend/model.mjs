@@ -1,15 +1,14 @@
-// Import dependencies.
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
-// Connect based on the .env file parameters.
+// Connects using .env
 mongoose.connect(
     process.env.MONGODB_CONNECT_STRING,
     { useNewUrlParser: true }
 );
 const db = mongoose.connection;
 
-// Confirm that the database has connected and print a message in the console.
+// Message
 db.once("open", (err) => {
     if(err){
         res.status(500).json({ error: '500 error: Connection to the server failed.' });
@@ -42,8 +41,7 @@ const createMatch = async (opponent, score, location, surface) => {
 }
 
 
-// RETRIEVE models *****************************************
-// Retrieve based on a filter and return a promise.
+// RETRIEVE models 
 const retrieveMatches = async () => {
     const query = TennisMatch.find();
     return query.exec();
@@ -55,14 +53,14 @@ const retrieveMatchByID = async (_id) => {
     return query.exec();
 }
 
-// DELETE model based on _id  *****************************************
+// DELETE model based on _id  
 const deleteMatchById = async (_id) => {
     const result = await TennisMatch.deleteOne({_id: _id});
     return result.deletedCount;
 };
 
 
-// UPDATE model *****************************************************
+// UPDATE model 
 const updateMatch = async (_id, opponent, score, location, surface) => {
     const result = await TennisMatch.replaceOne({_id: _id }, {
         opponent: opponent,
@@ -79,7 +77,4 @@ const updateMatch = async (_id, opponent, score, location, surface) => {
     }
 }
 
-
-
-// Export our variables for use in the controller file.
 export { createMatch, retrieveMatches, retrieveMatchByID, updateMatch, deleteMatchById }

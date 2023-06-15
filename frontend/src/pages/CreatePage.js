@@ -10,20 +10,20 @@ export const CreatePage = () => {
     
     const redirect = useNavigate();
 
-    const addMovie = async () => {
-        const newMovie = { opponent, score, location, surface };
+    const addMatch = async () => {
+        const newMatch = { opponent, score, location, surface };
         const response = await fetch('/matches', {
             method: 'post',
-            body: JSON.stringify(newMovie),
+            body: JSON.stringify(newMatch),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
         if(response.status === 201){
-            alert(`document added`);
+            alert(`Match added`);
             redirect("/");
         } else {
-            alert(`document not added status code = ${response.status}`);
+            alert(`Match not added status code = ${response.status}`);
             redirect("/");
         }
     };
@@ -32,12 +32,13 @@ export const CreatePage = () => {
     return (
         <>
         <article>
-            <h2>Add to the collection</h2>
-            <p>Paragraph about this page.</p>
+            <h2>Add a tennis match to the Log</h2>
+            <p>This page allows you to record information about your most recent tennis matches and add them to a log.</p>
+            <p>Please record who you played, the score, the number of winners and unforced errors, the location, the surface and lastly, the date the match was played.</p>
             <form onSubmit={(e) => { e.preventDefault();}}>
                 <fieldset>
-                    <legend>Which movie are you adding?</legend>
-                    <label for="opponent">Opponent</label>
+                    <legend>Please enter the relevant information about the match you want to log.</legend>
+                    <label for="opponent">Who did you play?</label>
                     <input
                         type="text"
                         placeholder="Opponent's name"
@@ -72,7 +73,7 @@ export const CreatePage = () => {
                     <label for="submit">
                     <button
                         type="submit"
-                        onClick={addMovie}
+                        onClick={addMatch}
                         id="submit"
                     >Add</button> to the collection</label>
                 </fieldset>

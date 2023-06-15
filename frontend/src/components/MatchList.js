@@ -1,10 +1,10 @@
 import React from 'react';
-import Movie from './Movie';
+import Match from './Match';
 
-function MovieList({ movies, onDelete, onEdit }) {
+function MatchList({ matches, onDelete, onEdit }) {
     return (
-        <table id="movies">
-            <caption>Add and Edit Movies</caption>
+        <table id="matches">
+            <caption>Add and Edit Matches</caption>
             <thead>
                 <tr>
                     <th>Opponent</th>
@@ -16,9 +16,9 @@ function MovieList({ movies, onDelete, onEdit }) {
                 </tr>
             </thead>
             <tbody>
-                {movies.map((movie, i) => 
-                    <Movie 
-                        movie={movie} 
+                {matches.map((match, i) => 
+                    <Match 
+                        match={match} 
                         key={i}
                         onDelete={onDelete}
                         onEdit={onEdit} 
@@ -28,4 +28,4 @@ function MovieList({ movies, onDelete, onEdit }) {
     );
 }
 
-export default MovieList;
+export default MatchList;
